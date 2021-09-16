@@ -31,7 +31,7 @@ class HomeFragment :BaseFragment() {
         // sin dataBinding
         //val recyclerView:RecyclerView=view.findViewById(R.id.recyclerView)
         //Con Binding
-        val rv=binding.recyclerView
+        val rv=binding.recyclerViewHome
 
 
     }
