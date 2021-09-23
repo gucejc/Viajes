@@ -5,7 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="?selectableItemBackground"
-    android:paddingBottom="18dp">
+    android:paddingBottom="18dp"
+    android:id="@+id/rootAttraction">
     
     
     <TextView
@@ -34,7 +35,7 @@
         tools:src="@tools:sample/backgrounds/scenic[5]"/>
 
     <TextView
-
+        android:id="@+id/tvVistasDelMes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -49,6 +50,7 @@
         />
     <androidx.appcompat.widget.AppCompatImageView
 
+        android:id="@+id/ivArrowNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"

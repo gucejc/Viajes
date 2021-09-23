@@ -1,15 +1,15 @@
-package com.guc3.viajes.ui.fragment
+package com.guc3.viajes.ui.fragment.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
-import com.guc3.viajes.R
 import com.guc3.viajes.databinding.FragmentHomeBinding
+import com.guc3.viajes.ui.fragment.BaseFragment
 
-class HomeFragment :BaseFragment() {
+class HomeFragment : BaseFragment() {
 
     private var _binding:FragmentHomeBinding?=null
     private val binding get() =_binding!!
@@ -31,7 +31,18 @@ class HomeFragment :BaseFragment() {
         // sin dataBinding
         //val recyclerView:RecyclerView=view.findViewById(R.id.recyclerView)
         //Con Binding
-        val rv=binding.recyclerViewHome
+        //val rv=binding.recyclerViewHome
+
+        val homeAdapter= HomeFragmentAdapter{
+
+        }
+        binding.recyclerViewHome.adapter=homeAdapter
+        //crea un alinea  delgada entre cada cardview
+        binding.recyclerViewHome.addItemDecoration(DividerItemDecoration(requireActivity(),RecyclerView.VERTICAL))
+
+        // valor de attractions esta en la clase BaseFragment
+        homeAdapter.setData(attractions)
+
 
 
     }

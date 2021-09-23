@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.guc3.viajes.ui.fragment.HomeFragment"
+        android:name="com.guc3.viajes.ui.fragment.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
