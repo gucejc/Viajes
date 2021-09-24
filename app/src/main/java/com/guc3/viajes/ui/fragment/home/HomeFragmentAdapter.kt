@@ -8,9 +8,7 @@ import com.guc3.viajes.data.Attraction
 import com.guc3.viajes.databinding.ViewHolderAttractionBinding
 import com.squareup.picasso.Picasso
 
-class HomeFragmentAdapter(
-    private val onClickedCallBack:() ->Unit
-): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class HomeFragmentAdapter(private val onClickedCallBack:(String) ->Unit): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val attractions=ArrayList<Attraction>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -41,7 +39,7 @@ class HomeFragmentAdapter(
     ){
         private val binding =ViewHolderAttractionBinding.bind(itemView)
 
-        fun onBind(attraction:Attraction, onClicked:() ->Unit ) {
+        fun onBind(attraction:Attraction, onClicked:(String) ->Unit ) {
             binding.tvTitle.text=attraction.title
             //todo cargando la imagen via picasso
             //Picasso.get().load(attraction.image_urls).into(binding.ivHeader)
@@ -50,7 +48,7 @@ class HomeFragmentAdapter(
 
             //el binding.rootAttraction es  el id  del contraintLayout de la  vista
             binding.rootAttraction.setOnClickListener{
-                onClicked()
+                onClicked(attraction.id)
             }
 
         }

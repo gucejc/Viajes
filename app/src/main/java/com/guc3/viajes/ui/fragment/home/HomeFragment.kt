@@ -33,7 +33,9 @@ class HomeFragment : BaseFragment() {
         //Con Binding
         //val rv=binding.recyclerViewHome
 
-        val homeAdapter= HomeFragmentAdapter{
+        val homeAdapter= HomeFragmentAdapter{attractionId ->
+            val navDirections= HomeFragmentDirections.actionHomeFragmentToAttractionDetailFragment(attractionId)
+            navController.navigate(navDirections)
 
         }
         binding.recyclerViewHome.adapter=homeAdapter
@@ -47,8 +49,8 @@ class HomeFragment : BaseFragment() {
 
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding=null
 
     }
