@@ -70,6 +70,8 @@ class AttractionDetailFragment : BaseFragment() {
             //este valor sale del xml de menu es el nombre  item que creamos
             R.id.menuItemLocation ->{
 
+                //?z=9&q=${attraction.title} esto es para darle zoom a la imagen del mapa  y agregar el titulo a textview de buscar dentrod el mapa
+                // te pinta en rojo la zona qie estamos buscando
                 val uri = Uri.parse("geo:${attraction.location.latitude},${attraction.location.longitude}?z=9&q=${attraction.title}")
                 val mapIntent = Intent(Intent.ACTION_VIEW, uri)
                 mapIntent.setPackage("com.google.android.apps.maps")
