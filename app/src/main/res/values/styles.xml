@@ -5,6 +5,13 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:fontFamily">@font/happy_monkey</item>
+    </style>
+
+    <style name="MyDialog" parent="Theme.AppCompat.DayNight.Dialog">
+
+        <item name="colorAccent">@color/rojo</item>
     </style>
 
 </resources>

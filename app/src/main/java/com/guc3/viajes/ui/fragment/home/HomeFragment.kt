@@ -43,7 +43,12 @@ class HomeFragment : BaseFragment() {
         binding.recyclerViewHome.addItemDecoration(DividerItemDecoration(requireActivity(),RecyclerView.VERTICAL))
 
         // valor de attractions esta en la clase BaseFragment
-        homeAdapter.setData(attractions)
+        //ojo ahora los datos lo va a trae de viewModel y de su lista que se crea
+        //y cada vez que exista una actualizacion de datos se va ejecutar este codigo
+        activityViewModel.attractionListLiveData.observe(viewLifecycleOwner){attractions ->
+            homeAdapter.setData(attractions)
+        }
+
 
 
 

@@ -2,12 +2,14 @@ package com.guc3.viajes.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.guc3.viajes.R
+import com.guc3.viajes.arch.AttractionsViewModel
 import com.guc3.viajes.data.Attraction
 import com.guc3.viajes.data.AttractionsResponse
 import com.squareup.moshi.JsonAdapter
@@ -19,9 +21,10 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var  navController:NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
-    val attractionsList:List<Attraction> by lazy{
-        parseAttraction()
-    }
+
+
+    //creamos o instanciamos la variable de viewModel
+    val viewModel:AttractionsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +38,10 @@ class MainActivity : AppCompatActivity() {
         //aunque no funciona , solo es la visualizacion
         appBarConfiguration= AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController,appBarConfiguration)
+
+        // ejecutamos la funcion init (inicial del viewmodel) y pasamos el contexto  para que realiza la
+        //creacion de laista de los datos json
+        viewModel.init(this)
     }
 
     //esta funcion sirve para activar el boton de regreso dentro de la barra de superior
@@ -44,14 +51,5 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun  parseAttraction():List<Attraction>{
-        val textFromFile=resources.openRawResource(R.raw.croatia).bufferedReader().use { it.readText() }
 
-        val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
-
-
-        val adapter :JsonAdapter<AttractionsResponse> = moshi.adapter(AttractionsResponse::class.java)
-
-        return adapter.fromJson(textFromFile)!!.attractions
-    }
 }

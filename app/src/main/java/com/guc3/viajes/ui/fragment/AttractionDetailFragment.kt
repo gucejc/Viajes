@@ -1,5 +1,6 @@
 package com.guc3.viajes.ui.fragment
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -23,10 +24,13 @@ class AttractionDetailFragment : BaseFragment() {
 
     private val safeArgs:AttractionDetailFragmentArgs by navArgs()
 
-    private val attraction:Attraction by lazy{
-        attractions.find { it.id== safeArgs.attractionId }!! //forzamos a que no  sea nulo!!
+    //private val attraction:Attraction by lazy{
+    //    attractions.find { it.id== safeArgs.attractionId }!! //forzamos a que no  sea nulo!!
 
-    }
+    //}
+
+
+    private val attraction=Attraction()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,7 +59,26 @@ class AttractionDetailFragment : BaseFragment() {
         binding.tvVistasDetail.text=attraction.months_to_visit
         binding.tvNumberofacts.text="${attraction.facts.size} facts"
         binding.tvNumberofacts.setOnClickListener {
-            //todo
+
+            val stringBuilder = StringBuilder("")
+
+            attraction.facts.forEach {
+                // el \u2022 es un corchete
+                stringBuilder.append("\u2022 $it")
+                stringBuilder.append("\n\n")
+            }
+
+            //truncamos el mensaje hasta que encuentre el salto de linea
+            val message=stringBuilder.toString().substring(0,stringBuilder.toString().lastIndexOf("\n\n"))
+
+            AlertDialog.Builder(requireContext(),R.style.MyDialog)
+                .setTitle("${attraction.title} facts")
+                .setMessage(message)
+                .setPositiveButton("ok"){ dialog,which ->
+                    dialog.dismiss()
+                }
+                .setCancelable(false)
+                .show()
         }
 
     }
