@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
+import com.guc3.viajes.R
 import com.guc3.viajes.databinding.FragmentHomeBinding
 import com.guc3.viajes.ui.fragment.BaseFragment
 
@@ -33,9 +34,18 @@ class HomeFragment : BaseFragment() {
         //Con Binding
         //val rv=binding.recyclerViewHome
 
+        //este bloque de  código se ocupa cuando damos click en cualquier imagen de la cardview para que nos envie
+        // al fragmento  detail y se  le pasa el attractionId
         val homeAdapter= HomeFragmentAdapter{attractionId ->
-            val navDirections= HomeFragmentDirections.actionHomeFragmentToAttractionDetailFragment(attractionId)
-            navController.navigate(navDirections)
+            navController.navigate(R.id.action_homeFragment_to_attractionDetailFragment)
+            activityViewModel.onAtrractionSelected(attractionId)
+
+
+
+            //se puede pasar de unfragmento a otromediante la sigueinte accion , simpre y cuando  exista  la action
+            //dentro del navgraph o la conexion  del  navgraph
+            //val navDirections= HomeFragmentDirections.actionHomeFragmentToAttractionDetailFragment(attractionId)
+            //navController.navigate(navDirections)
 
         }
         binding.recyclerViewHome.adapter=homeAdapter
@@ -45,6 +55,7 @@ class HomeFragment : BaseFragment() {
         // valor de attractions esta en la clase BaseFragment
         //ojo ahora los datos lo va a trae de viewModel y de su lista que se crea
         //y cada vez que exista una actualizacion de datos se va ejecutar este codigo
+        //esta sección va observar cambios de la lista
         activityViewModel.attractionListLiveData.observe(viewLifecycleOwner){attractions ->
             homeAdapter.setData(attractions)
         }

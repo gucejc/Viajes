@@ -1,5 +1,7 @@
 package com.guc3.viajes.ui
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -42,6 +44,20 @@ class MainActivity : AppCompatActivity() {
         // ejecutamos la funcion init (inicial del viewmodel) y pasamos el contexto  para que realiza la
         //creacion de laista de los datos json
         viewModel.init(this)
+
+        // aqui vamos a ejecutar  el lanzamiento del  intent de google mapas para que abra la app(Maps)
+        // y se vizualice  la localización
+        // con  esto podemos decir que  se pueden pasar los datos  de un fragmento a un activity por medio del observe
+        viewModel.locationSelectedLiveData.observe(this){attraction ->
+            val uri = Uri.parse("geo:${attraction.location.latitude},${attraction.location.longitude}?z=9&q=${attraction.title}")
+            val mapIntent = Intent(Intent.ACTION_VIEW, uri)
+            mapIntent.setPackage("com.google.android.apps.maps")
+            startActivity(mapIntent)
+
+        }
+
+
+
     }
 
     //esta funcion sirve para activar el boton de regreso dentro de la barra de superior
