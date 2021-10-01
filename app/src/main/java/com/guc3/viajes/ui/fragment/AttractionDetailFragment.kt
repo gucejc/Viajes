@@ -1,22 +1,11 @@
 package com.guc3.viajes.ui.fragment
 
 import android.app.AlertDialog
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.RecyclerView
 import com.guc3.viajes.R
-import com.guc3.viajes.data.Attraction
 import com.guc3.viajes.databinding.FragmentAttractionDetailBinding
-import com.guc3.viajes.databinding.FragmentHomeBinding
-import com.guc3.viajes.ui.fragment.home.HomeFragmentAdapter
-import com.guc3.viajes.ui.fragment.home.HomeFragmentDirections
 import com.squareup.picasso.Picasso
-import java.util.zip.Inflater
 
 class AttractionDetailFragment : BaseFragment() {
     private var _binding: FragmentAttractionDetailBinding? = null

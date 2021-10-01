@@ -36,7 +36,7 @@ class HomeFragment : BaseFragment() {
 
         //este bloque de  código se ocupa cuando damos click en cualquier imagen de la cardview para que nos envie
         // al fragmento  detail y se  le pasa el attractionId
-        val homeAdapter= HomeFragmentAdapter{attractionId ->
+        val epoxyController= HomeFragmentController{ attractionId ->
             navController.navigate(R.id.action_homeFragment_to_attractionDetailFragment)
             activityViewModel.onAtrractionSelected(attractionId)
 
@@ -48,16 +48,17 @@ class HomeFragment : BaseFragment() {
             //navController.navigate(navDirections)
 
         }
-        binding.recyclerViewHome.adapter=homeAdapter
+        binding.epoxyRecyclerViewHome.setController(epoxyController)
         //crea un alinea  delgada entre cada cardview
-        binding.recyclerViewHome.addItemDecoration(DividerItemDecoration(requireActivity(),RecyclerView.VERTICAL))
+        //binding.epoxyRecyclerViewHome.addItemDecoration(DividerItemDecoration(requireActivity(),RecyclerView.VERTICAL))
 
         // valor de attractions esta en la clase BaseFragment
         //ojo ahora los datos lo va a trae de viewModel y de su lista que se crea
         //y cada vez que exista una actualizacion de datos se va ejecutar este codigo
         //esta sección va observar cambios de la lista
+        epoxyController.isLoading=true
         activityViewModel.attractionListLiveData.observe(viewLifecycleOwner){attractions ->
-            homeAdapter.setData(attractions)
+            epoxyController.attractions =attractions
         }
 
 
