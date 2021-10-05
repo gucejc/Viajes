@@ -5,17 +5,31 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivHeaderDetail"
+    <com.airbnb.epoxy.EpoxyRecyclerView
+        android:id="@+id/ivHeaderEpoxyRecyclerDetail"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-
-        android:scaleType="centerCrop"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="horizontal"
         app:layout_constraintDimensionRatio="16:9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/backgrounds/scenic[5]"/>
+        />
+        <!--tools:src="@tools:sample/backgrounds/scenic[5]"-->
+
+    <ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
+        android:id="@+id/indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/tvTitileDetail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvTitileDetail"
+        app:spi_dotColor="@color/white"
+        app:spi_dotSelectedColor="@color/white"
+        android:layout_marginEnd="4dp"
+        android:orientation="vertical"/>
+
     <TextView
         android:id="@+id/tvTitileDetail"
         android:layout_width="match_parent"
@@ -25,7 +39,7 @@
         android:textColor="@color/white"
         android:textSize="22sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/ivHeaderDetail"
+        app:layout_constraintBottom_toBottomOf="@+id/ivHeaderEpoxyRecyclerDetail"
         tools:text="Sali"
         />
 
@@ -35,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@+id/ivHeaderDetail"
+        app:layout_constraintTop_toBottomOf="@+id/ivHeaderEpoxyRecyclerDetail"
         tools:text="@tools:sample/lorem/random"
         />
 

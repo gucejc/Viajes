@@ -69,7 +69,9 @@ class HomeFragmentController(private val onClickedCallBack:(String) ->Unit): Epo
             tvTitle.text=attraction.title
             //todo cargando la imagen via picasso
             //Picasso.get().load(attraction.image_urls).into(binding.ivHeader)
-            Picasso.get().load(attraction.image_url).into(ivHeader)
+            if(attraction.image_urls.isNotEmpty()) {
+                Picasso.get().load(attraction.image_urls[0]).into(ivHeader)
+            }
             tvVistasDelMes.text=attraction.months_to_visit
 
             //el binding.rootAttraction es  el id  del contraintLayout de la  vista

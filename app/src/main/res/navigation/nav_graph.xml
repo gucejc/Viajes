@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/attractionDetailFragment"
-        android:name="com.guc3.viajes.ui.fragment.AttractionDetailFragment"
+        android:name="com.guc3.viajes.ui.fragment.details.AttractionDetailFragment"
         android:label="AttractionDetailFragment"
         tools:layout="@layout/fragment_attraction_detail">
         <!--<deepLink app:uri="https://viajes.com/attraction/{attractionId}"/>

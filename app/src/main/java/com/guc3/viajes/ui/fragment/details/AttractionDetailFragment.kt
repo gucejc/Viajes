@@ -1,10 +1,12 @@
-package com.guc3.viajes.ui.fragment
+package com.guc3.viajes.ui.fragment.details
 
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.*
+import androidx.recyclerview.widget.LinearSnapHelper
 import com.guc3.viajes.R
 import com.guc3.viajes.databinding.FragmentAttractionDetailBinding
+import com.guc3.viajes.ui.fragment.BaseFragment
 import com.squareup.picasso.Picasso
 
 class AttractionDetailFragment : BaseFragment() {
@@ -39,7 +41,12 @@ class AttractionDetailFragment : BaseFragment() {
             binding.tvTitileDetail.text=attraction.title
             binding.tvDescriptionDetail.text=attraction.description
             //todo cargando la imagen via picasso
-            Picasso.get().load(attraction.image_url).into(binding.ivHeaderDetail)
+            //llamamos elcontroller DetailEpoxyController
+
+            binding.ivHeaderEpoxyRecyclerDetail.setControllerAndBuildModels(DetailEpoxyController(attraction.image_urls))
+            //LinearSnapHelper().attachToRecyclerView(binding.ivHeaderEpoxyRecyclerDetail)
+            binding.indicator.attachToRecyclerView(binding.ivHeaderEpoxyRecyclerDetail)
+
             binding.tvVistasDetail.text=attraction.months_to_visit
             binding.tvNumberofacts.text="${attraction.facts.size} facts"
             binding.tvNumberofacts.setOnClickListener {
